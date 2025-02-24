@@ -1,5 +1,5 @@
-let WORK_TIME_SEC = 10;
-let BREAK_TIME_SEC = 15;
+let WORK_TIME_SEC = 1 * 60; // Modify this value
+let BREAK_TIME_SEC = 0.25 * 60; // Modify this value
 let VIDEO_URL = "https://youtu.be/MKC9LvRivTM?t=7";
 
 chrome.runtime.onInstalled.addListener(async () => {
@@ -29,10 +29,10 @@ chrome.alarms.create("pomodoroTimer", {
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name === "pomodoroTimer") {
-    chrome.storage.local.get(["is_on", "timer", "is_break"], (data) => {
+    chrome.storage.local.get(["is_on", "timer", "is_break"], async (data) => {
       if (data.is_on && data.timer > 0) {
-        chrome.storage.local.set({ timer: data.timer - 1 });
-        console.log(`Timer: ${data.timer}`);
+        await chrome.storage.local.set({ timer: data.timer - 1 });
+        console.log(`Timer: ${data.timer - 1}`);
       } else if (data.is_on && data.timer === 0) {
         if (!data.is_break) {
           startBreak();
@@ -62,7 +62,7 @@ const startBreak = () => {
 
 const restartWorkSession = () => {
   console.log("Restarting work session");
-
+  console.log(WORK_TIME_SEC);
   chrome.storage.local.set({
     is_break: false,
     timer: WORK_TIME_SEC,

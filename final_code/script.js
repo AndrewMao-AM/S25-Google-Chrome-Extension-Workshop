@@ -1,4 +1,4 @@
-const DEFAULT_WORK_TIME = 10;
+let WORK_TIME_SEC = 1 * 60; // Modify this value to match ./background.js WORK_TIME_SEC
 let timerIntervalId;
 
 const timerDisplay = document.getElementById("timer");
@@ -59,9 +59,9 @@ startButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", async () => {
   stopTimer();
-  setTimerDisplay(DEFAULT_WORK_TIME);
+  setTimerDisplay(WORK_TIME_SEC);
   await chrome.storage.local.set({
-    timer: DEFAULT_WORK_TIME,
+    timer: WORK_TIME_SEC,
     is_on: false,
   });
 });
