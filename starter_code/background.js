@@ -29,18 +29,7 @@ chrome.alarms.create("pomodoroTimer", {
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name === "pomodoroTimer") {
-    chrome.storage.local.get(["is_on", "timer", "is_break"], async (data) => {
-      if (data.is_on && data.timer > 0) {
-        await chrome.storage.local.set({ timer: data.timer - 1 });
-        console.log(`Timer: ${data.timer - 1}`);
-      } else if (data.is_on && data.timer === 0) {
-        if (!data.is_break) {
-          startBreak();
-        } else {
-          restartWorkSession();
-        }
-      }
-    });
+    // TODO
   }
 });
 

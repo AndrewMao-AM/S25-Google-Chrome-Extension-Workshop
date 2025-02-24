@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Pomodoro Study Buddy",
+    "version": "1.0",
+    "description": "A Pomodoro timer that plays a random YouTube video during breaks.",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "index.html"
+    },
+    "permissions": [
+        "tabs",
+        "alarms",
+        "storage"
+    ]
+  }
+  

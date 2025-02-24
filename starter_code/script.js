@@ -14,28 +14,12 @@ const setTimerDisplay = (time) => {
 };
 
 const updateTimer = () => {
-  chrome.storage.local.get(["timer", "is_break"], (data) => {
-    setTimerDisplay(data.timer);
-    if (data.is_break) {
-      startButton.style.display = "none";
-      resetButton.style.display = "none";
-      document.getElementById("break-message").style.display = "block";
-    } else {
-      startButton.style.display = "inline-block";
-      resetButton.style.display = "inline-block";
-      document.getElementById("break-message").style.display = "none";
-    }
-  });
+  // TODO
 };
 
 const startTimer = () => {
   timerIntervalId = setInterval(updateTimer, 1000);
   startButton.textContent = "Stop";
-};
-
-const stopTimer = () => {
-  clearInterval(timerIntervalId);
-  startButton.textContent = "Start";
 };
 
 updateTimer();
@@ -45,14 +29,19 @@ chrome.storage.local.get(["is_on"], (data) => {
   }
 });
 
+const stopTimer = () => {
+  clearInterval(timerIntervalId);
+  startButton.textContent = "Start";
+};
+
 startButton.addEventListener("click", () => {
-  chrome.storage.local.get(["is_on"], async (data) => {
+  chrome.storage.local.get(["is_on"], (data) => {
     if (data.is_on) {
       stopTimer();
-      await chrome.storage.local.set({ is_on: false });
+      chrome.storage.local.set({ is_on: false });
     } else {
       startTimer();
-      await chrome.storage.local.set({ is_on: true });
+      chrome.storage.local.set({ is_on: true });
     }
   });
 });
