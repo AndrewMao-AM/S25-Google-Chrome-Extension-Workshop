@@ -1,4 +1,4 @@
-let WORK_TIME_SEC = 1 * 60; // Modify this value to match ./background.js WORK_TIME_SEC
+let WORK_TIME_SEC = 0.25 * 60; // Modify this value to match ./background.js WORK_TIME_SEC
 let timerIntervalId;
 
 const timerDisplay = document.getElementById("timer");

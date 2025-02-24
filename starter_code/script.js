@@ -38,10 +38,10 @@ startButton.addEventListener("click", () => {
   chrome.storage.local.get(["is_on"], (data) => {
     if (data.is_on) {
       stopTimer();
-      chrome.storage.local.set({ is_on: false });
+      // TODO
     } else {
       startTimer();
-      chrome.storage.local.set({ is_on: true });
+      // TODO
     }
   });
 });

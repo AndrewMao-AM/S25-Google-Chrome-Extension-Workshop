@@ -1,4 +1,4 @@
-let WORK_TIME_SEC = 1 * 60;
+let WORK_TIME_SEC = 0.25 * 60;
 let BREAK_TIME_SEC = 0.25 * 60;
 let VIDEO_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
